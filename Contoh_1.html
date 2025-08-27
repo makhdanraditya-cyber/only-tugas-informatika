@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Home</title>
+    <style>
+    body {
+        background-image: url(Earth.jpg);
+        background-size: cover;
+        color: white;
+        font-family: 'Times New Roman', Times, serif;
+    }
+    button {
+        padding: 12px 24px;
+        border: none;
+        border-radius: 12px;
+        background: #531356;
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .box {
+        color: white;
+        background: rgba(0, 0, 0,0.7);
+        padding: 20x 30x;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0,0.5);
+        max-width: 2000px;
+        text-align: center;
+    }
+    button:hover {
+        background: #ac18ae;
+    }
+    .marquee {
+        position:relative;
+        overflow: hidden;
+        white-space: nowrap;
+        box-sizing: border-box;
+    }
+    .marquee h1{
+        display: inline-block;
+        padding-left: 100%;
+        animation: jalan 10s linear infinite;
+        color: crimson;
+    }
+    @keyframes jalan{
+        0% {transform: translateX(0%) ;}
+        100% {transform: translateX(-100%);}
+    }
+    </style>
+</head>
+<body>
+    <div class="marquee">
+        <h1><b>Welcome to my First Website</b></h1>
+    </div>
+    <p>Halo selamat datang di website pertama saya</p>
+    <p>
+        Hai, jadi di website ini merupakan hasil dari coding yang sudah saya lakukan, sebagaimana yang telah diperintahkan oleh guru pembimbing mapel Informatika kami yaitu Ibu Deswati, dimana beliau memberikan tugas kepada kami untuk membuat sebuah website dimana website tersebut berisikan beberapa pembuka dengan 2 gambar yang kita inginkan, yang dilanjut dengan adanya hyperlink yang tersambung ke 2 halaman lain dimana, di masing halaman halaman ini berisikan biodata pribadi saya dan juga galeri atas beberapa foto
+    </p>
+    <center>
+        <img src="Rainy_Train.jpg" alt="Rainy_Train" width="500">
+        <img src="Natuluminescene.jpg" alt="Natuluminescene" width="425">
+        <br><a href="hal_1.html" style="color: crimson;"><h3>Biodata</h3></a>
+        <a href="Galeri.html" style="color: crimson;"><h3>Galeri</h3></a>
+        <a href="hobi.html" style="color: crimson;"><h3>Hobi</h3></a>
+    </center>
+    <audio id="lagu" loop>
+        <source src="SoundSide_Vol.1_ORCA_Nostalgia_Mix_HD.mp3">
+    </audio>
+
+    <button id="tombol">▶ Play</button>
+
+    <script>
+        const lagu= document.getElementById("lagu");
+        const tombol= document.getElementById("tombol");
+
+        window.addEventListener("load", () => {
+            const waktu = localStorage.getItem("laguTime");
+            if (waktu) {
+                lagu.currentTime = waktu;
+            } 
+            const isPlaying = localStorage.getItem("laguTime");
+            if (isPlaying === "true") {
+                lagu.play();
+                tombol.textContent = "⏸ Pause"
+            }
+        });
+
+        window.addEventListener("beforeunload", () => {
+            localStorage.setItem("laguTime", lagu.currentTime);
+            localStorage.setItem("laguPlaying", !lagu.paused);
+        });
+        
+        tombol.addEventListener("click", () => {
+            if (lagu.paused) {
+                lagu.play();
+                tombol.textContent = "⏸ Pause";
+            } else {
+                lagu.pause();
+                tombol.textContent = "▶ Play"; 
+            }
+        });
+    </script>
+</body>
+</html>
